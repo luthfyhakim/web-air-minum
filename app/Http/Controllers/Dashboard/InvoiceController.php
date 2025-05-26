@@ -17,7 +17,7 @@ class InvoiceController extends Controller
             $query->where('invoice_number', 'like', '%' . $request->search . '%');
         }
 
-        $invoices = $query->latest()->paginate(10);
+        $invoices = $query->oldest()->paginate(10);
         return view('dashboard.invoices.index', compact('invoices'));
     }
 

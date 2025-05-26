@@ -51,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/order-histories', 'index')->name('order_histories.index');
             Route::get('/order-histories/{id}', 'show')->name('order_histories.show');
             Route::patch('/order-histories/{orderHistory}/status', 'updateStatus')->name('order_histories.updateStatus');
+            Route::delete('/order-histories/{orderHistory}', 'destroy')->name('order_histories.destroy');
         });
 
         Route::controller(InvoiceController::class)->group(function () {

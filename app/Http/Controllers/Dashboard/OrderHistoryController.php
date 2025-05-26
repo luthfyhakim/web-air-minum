@@ -44,4 +44,22 @@ class OrderHistoryController extends Controller
 
         return back()->with('success', 'Status updated.');
     }
+
+    public function destroy($id)
+    {
+        $orderHistory = OrderHistory::findOrFail($id);
+
+        $order = $orderHistory->order;
+        if ($order) {
+            $invoice = $order->invoice;
+            if ($invoice) {
+                $invoice->delete();
+            }
+            $order->delete();
+        }
+
+        $orderHistory->delete();
+
+        return back()->with('success', 'Order history and related records deleted.');
+    }
 }

@@ -28,6 +28,7 @@
                     <th>Bukti Transfer</th>
                     <th>Status</th>
                     <th>WhatsApp</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,10 +70,18 @@
                                 WhatsApp
                             </a>
                         </td>
+                        <td>
+                            <form action="{{ route('order_histories.destroy', $history->id) }}" method="POST"
+                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus riwayat ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8" class="text-center">Belum ada riwayat pesanan.</td>
+                        <td colspan="9" class="text-center">Belum ada riwayat pesanan.</td>
                     </tr>
                 @endforelse
             </tbody>

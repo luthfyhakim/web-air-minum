@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'usertest@swa.com',
             'password' => bcrypt('usertest'),
             'birth_date' => '1990-01-01',
-            'phone' => '+628123456789',
+            'phone' => '+6281358132251',
             'address' => 'Jl. Contoh Alamat No. 123, Jakarta',
         ]);
 

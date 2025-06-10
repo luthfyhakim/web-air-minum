@@ -23,7 +23,7 @@ class OrderHistoryController extends Controller
             $query->where('status', $request->status);
         }
 
-        $histories = $query->oldest()->paginate(10);
+        $histories = $query->latest()->paginate(10);
 
         return view('dashboard.order-histories.index', compact('histories'));
     }
@@ -37,10 +37,22 @@ class OrderHistoryController extends Controller
 
     public function updateStatus(Request $request, OrderHistory $orderHistory)
     {
-        $request->validate(['status' => 'required|in:Selesai,Diproses,Ditolak']);
+        $request->validate([
+            'status' => 'required|in:Selesai,Diproses,Ditolak',
+            'message' => 'required_if:status,Ditolak|max:255'
+        ]);
 
-        $orderHistory->update(['status' => $request->status]);
-        $orderHistory->order->update(['status' => $request->status]);
+        $orderHistory->update([
+            'status' => $request->status,
+            'message' => $request->message,
+        ]);
+
+        if ($orderHistory->order) {
+            $orderHistory->order->update([
+                'status' => $request->status,
+                'message' => $request->message,
+            ]);
+        }
 
         return back()->with('success', 'Status updated.');
     }

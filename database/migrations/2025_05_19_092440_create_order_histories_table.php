@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('alamat');
             $table->string('bukti_transfer')->nullable();
             $table->enum('status', ['Selesai', 'Diproses', 'Ditolak'])->default('Diproses');
+            $table->text('message')->nullable();
             $table->timestamps();
         });
     }

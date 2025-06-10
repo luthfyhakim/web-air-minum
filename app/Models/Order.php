@@ -21,6 +21,7 @@ class Order extends Model
         'total_price',
         'payment_proof',
         'status',
+        'message',
     ];
 
     protected static function boot()

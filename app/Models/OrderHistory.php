@@ -17,6 +17,7 @@ class OrderHistory extends Model
         'alamat',
         'bukti_transfer',
         'status',
+        'message',
     ];
 
     public function order()

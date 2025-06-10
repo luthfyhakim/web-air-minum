@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Dashboard\IncomeReportController;
 use App\Http\Controllers\Dashboard\OrderHistoryController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\InvoiceController;
@@ -58,6 +59,11 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/invoices', 'index')->name('invoices.index');
             Route::get('/invoices/{invoice}', 'show')->name('invoices.show');
             Route::get('/invoices/{invoice}/pdf', 'generatePdf')->name('invoices.pdf');
+        });
+
+        Route::controller(IncomeReportController::class)->group(function () {
+            Route::get('/income-report', 'index')->name('income.report.index');
+            Route::get('/income-report/export', 'export')->name('income.report.export');
         });
     });
 });

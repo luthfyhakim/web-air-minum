@@ -56,6 +56,7 @@
                                 <th>Total Harga</th>
                                 <th>Tanggal</th>
                                 <th>Status</th>
+                                <th>Catatan</th>
                                 <th>Invoice</th>
                             </tr>
                         </thead>
@@ -81,6 +82,7 @@
                                             <span class="text-danger fw-bold">Ditolak</span>
                                         @endif
                                     </td>
+                                    <td>{{ $order->message ?? '-' }}</td>
                                     <td>
                                         <a href="{{ route('invoices.pdf', $order->id) }}" target="_blank"
                                             class="btn btn-sm btn-primary">
@@ -90,7 +92,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="8">Belum ada riwayat pesanan.</td>
+                                    <td colspan="9">Belum ada riwayat pesanan.</td>
                                 </tr>
                             @endforelse
                         </tbody>

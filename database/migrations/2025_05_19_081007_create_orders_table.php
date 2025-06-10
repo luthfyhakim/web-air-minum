@@ -25,6 +25,7 @@ return new class extends Migration
             $table->decimal('total_price', 15, 2);
             $table->string('payment_proof')->nullable();
             $table->enum('status', ['Selesai', 'Diproses', 'Ditolak'])->default('diproses');
+            $table->text('message')->nullable();
             $table->timestamps();
         });
     }
